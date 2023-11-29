@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" >
+	<html lang="en" >
+		<head>
+		  <meta charset="UTF-8">
+		  <title>Seeta TV </title>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-FfzfrtACB/ir5P2+RU6mD5pfE2UZlSf2QdL6O59B6EGGoOcSD9byQ/lJ6UIZIepG" crossorigin="anonymous">
+		  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/font-awesome.min.css">
+		  <script src="https://apis.google.com/js/platform.js" async defer></script>
+		  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-t/KB5OWVRvLr+WigWn9nRryFgHmPwvKjtrD8/+E2f1qZq3BtUnkt8tYPpqd5xBpBtZ5qbA7teX9GJfZR/R+2Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.8.2/css/all.css'><link rel="stylesheet" href="./login.css">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link href="img/Seeta TV (2).png" rel="icon">
+               <!-- Include the Google Sign-In API script -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+		</head>
+<body>
+
+<head>
+
+<body>
+    <header class="showcase">
+        <div class="video-container">
+            <video autoplay loop muted>
+              <source src="TV (online-video-cutter.com).mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+            <div class="logo">
+                <img src="img/Seeta TV (2).png">
+            </div>
+
+            <div class="showcase-content">
+                <div class="formm">
+                    <form>
+                        <h1>Sign In</h1>
+                        <div class="info">
+                            <input class="email" type="email" placeholder="Email or phone number"> <br>
+                            <input class="email" type="password" placeholder="Password">
+                        </div>
+                        <div class="btn">
+                            <button class="btn-primary" type="submit">Sign In</button>
+                        </div>
+                        <div class="help">
+                            <div>
+                                <input value="true" type="checkbox"><label>Remember me</label>
+                            </div>
+
+                            <a href="">Need Help ?</a>
+                        
+                        </div>
+
+                    </form>
+    
+                </div>
+                
+                <!-- Place this where you want the Google sign-up button to appear -->
+
+
+                <div class="signup">
+                    <p>New to Seeta TV ?</p>
+                    <a href="https://www.netflix.com/dz-en/">Sign up now</a>
+                </div> 
+                <hr><p> OR </p>
+               <hr>               
+               <a href="#" id="signInWithGoogle" class="google-signup-btn">
+                <span class="google-icon"><i class="fab fa-google"></i></span>
+                Sign up with Google
+            </a>
+                <div class="more">
+                    <p>
+                        This page is protected by Google reCAPTCHA to ensure you're not a bot. <a href="#">Learn more.</a> 
+                    </p>
+                </div>
+
+
+            </div>
+            <style>
+                /* Style your button as needed */
+                .google-signup-btn {
+                    background-color: #4285F4;
+                    color: #ffffff;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                }
+        
+                .google-icon {
+                    margin-right: 10px;
+                }
+
+                hr {
+            border: none;
+            height: 1px;
+            background-color: #ccc; /* Set your desired color */
+            margin: 2px 0; /* Adjust margin as needed */
+        }
+
+  </style>
+       
+            <footer>
+                
+                <div class="ftr-content">
+                    <div class="contact">
+                        <a href="#">Quesions? Contact us.</a>
+                    </div>
+                    <div class="ftr">
+                        <a href="#">Gift Card Terms</a>
+                        <a href="#">Terms of Use</a>
+                        <a href="#">Privacy Statement</a>
+                    </div>
+                    <div class="select">
+                        <select>
+                            <option>English</option>
+                            <option>العربية</option>
+                            <option>Français</option>
+                            
+                        </select>
+                    </div>
+                </div>
+               
+            </footer>
+       
+    </header>
+
+
+</body>
+</html>
+
+
+<!-- Firebase libraries -->
+<script type="module" src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.0.2/firebase-storage.js"></script>
+
+
+<script type="module">
+    
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-storage.js";
+import { getDatabase, ref, remove, push, get, update, onValue, child, set } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js";
+import { getAuth, onAuthStateChanged,sendPasswordResetEmail , signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js";
+ const firebaseConfig = {
+    apiKey: "AIzaSyD0iYIJxlamljCScCdXfZqIKybV99y7LZE",
+    authDomain: "seetatv-7c704.firebaseapp.com",
+    databaseURL: "https://seetatv-7c704-default-rtdb.firebaseio.com",
+    projectId: "seetatv-7c704",
+    storageBucket: "seetatv-7c704.appspot.com",
+    messagingSenderId: "47823808148",
+    appId: "1:47823808148:web:73c9bc93ee2be6324fb681"
+  };
+
+  const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const auth = getAuth(app);
+const storage = getStorage(app);
+
+
+   // Google Sign-In function
+   function signInWithGoogle() {
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+
+                // The signed-in user info
+                const user = result.user;
+
+                // Save user information to the Realtime Database
+                saveUserToDatabase(user);
+
+                // You can handle the signed-in user as needed
+                console.log(user);
+            })
+            .catch((error) => {
+                // Handle errors here
+                console.error(error);
+            });
+    }
+
+    // Save user information to the Realtime Database
+    function saveUserToDatabase(user) {
+        const userRef = ref(database, `users/${user.uid}`);
+        set(userRef, {
+            displayName: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL,
+            // Add any other user information you want to save
+        });
+    }
+
+    // Listen for changes in authentication state
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            // User is signed in
+            console.log("Signed in:", user);
+            saveUserToDatabase(user);
+        } else {
+            // User is signed out
+            console.log("Signed out");
+        }
+    });
+
+    // Add click event listener to the button
+    const button = document.getElementById('signInWithGoogle');
+    button.addEventListener("click", () => {
+        signInWithGoogle();
+    });
+    </script>
+    
