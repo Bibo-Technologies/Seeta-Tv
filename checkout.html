@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="shortcut icon" href="img/Seeta TV (2).png" type="image/x-icon" />
+    <link rel="stylesheet" href="plan.css" />
+
+    <title>Sign Up Planform</title>
+  </head>
+
+  <body>
+    <nav class="nav nav-3">
+      <a href="">
+        <img class="logo" src="img/Seeta TV (2).png" alt="" />
+      </a>
+      <a href="" class="btn-logout text-underline">Sign Out</a>
+    </nav>
+
+    <section class="container-table margin-inline">
+      <div class="plan-head">
+        <h2>step 2 of 2</h2>
+        <h1>Make your payment and proceed to Seeta TV</h1>
+      </div>
+      <!-- Add this HTML structure for displaying the plan details -->
+<div class="plan-details">
+  <h3>Selected Plan:</h3>
+  <p id="selectedPlan"> 
+    <div class="spinner">
+      <i class="fas fa-spinner fa-spin"></i>
+  </div></p>
+  <h3>Details:</h3>
+  
+  <p id="planDetails">
+    <div class="spinner">
+      <i class="fas fa-spinner fa-spin"></i>
+  </div>
+  </p>
+  
+</div>
+
+   <!--   <div class="plan-list">
+        <div class="choose-plan">
+          <i class="fas fa-check text-check"></i>
+          <p></p>
+        </div>
+        <div class="choose-plan">
+          <i class="fas fa-check text-check"></i>
+          <p></p>
+        </div>
+        <div class="choose-plan">
+          <i class="fas fa-check text-check"></i>
+          <p></p>
+        </div>
+      </div>-->
+
+      <!-- Table -->
+
+      <div id="cards">
+              <h1>Choose Payment Type</h1>
+
+        <div class="payment-card">
+          <div class="payment-option" id="airtelOption">
+            <img class="image" src="img/airtel.jpg" alt="Airtel Money Logo">
+            <h2>Airtel Money</h2>
+            <button class="toggle-btn" onclick="togglePayment('airtel')">Select</button>
+            <div class="inputs" id="airtelInputs">
+                <input type="tel" id="mobileNumber" placeholder="Mobile Number">
+                <input type="number" id="paymentAmount" placeholder="Amount">
+        
+                <button class="Payment" onclick="makeUSSDRequest()">Make Payment</button>
+            </div>
+        </div>
+        
+        <script>
+        function makeUSSDRequest() {
+            // Get values from input fields
+            const mobileNumber = document.getElementById('mobileNumber').value;
+            const paymentAmount = document.getElementById('paymentAmount').value;
+        
+            // Construct USSD code
+            const ussdCode = `*165*1*1*${mobileNumber}*${paymentAmount}#`;
+        
+            // Display USSD code (for testing purposes)
+            console.log('USSD Code:', ussdCode);
+        
+            // Note: Initiating USSD directly from a web page might not work on all devices/browsers
+            // The following code demonstrates how you could attempt to initiate a USSD prompt, but its effectiveness may vary
+            try {
+                // Redirect to the USSD code (this might trigger a prompt on some devices)
+                window.location.href = `tel:${encodeURIComponent(ussdCode)}`;
+            } catch (error) {
+                // Handle errors or provide alternative instructions
+                console.error('Error initiating USSD:', error.message);
+                alert('To complete the payment, please manually dial the following USSD code: ' + ussdCode);
+            }
+        }
+        </script>
+        
+      
+          <div class="payment-option" id="mtnOption">
+              <img class="image" src="img/mtn.png" alt="MTN Mobile Money Logo">
+              <h2>MTN Mobile Money</h2>
+              <button class="toggle-btn" onclick="togglePayment('mtn')">Select</button>
+              <div class="inputs" id="mtnInputs">
+                  <input type="tel" placeholder="Mobile Number">
+                  <input type="number" placeholder="Amount">
+                  <button class="Payment">Make Payment</button>
+
+              </div>
+          </div>
+      </div>
+      
+  </div>
+</section>
+
+    <footer class="footer footer-gray margin-top-1">
+      <div class="footer-container margin-inline">
+        <p>
+          Questions? <br />
+          Call 007-803-321-2130
+        </p>
+        <div class="links">
+          <ul class="">
+            <li><a class="text-terms text-underline" href="">FAQ</a></li>
+            <li><a class="text-terms text-underline" href="">Cookie Preferences</a></li>
+          </ul>
+
+          <ul>
+            <li><a class="text-terms text-underline" href="">Help Center</a></li>
+            <li><a class="text-terms text-underline" href="">Corporate Information</a></li>
+          </ul>
+
+          <a class="text-terms text-underline" href="">Terms of Use</a>
+
+          <a class="text-terms text-underline" href="">Privacy</a>
+        </div>
+
+        <div class="language">
+          <select class="language-select" onchange="location=this.value;">
+            <option value="english" selected>English</option>
+            <option value="">Bahasa Indonesia</option>
+          </select>
+          <div class="language-icon">
+            <i class="fas fa-globe globe"></i>
+            <i class="fas fa-chevron-down chevron"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<!-- Firebase libraries -->
+<script type="module" src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/9.0.2/firebase-storage.js"></script>
+
+<script>
+  function togglePayment(option) {
+    const airtelOption = document.getElementById('airtelOption');
+    const mtnOption = document.getElementById('mtnOption');
+    
+    const airtelInputs = document.getElementById('airtelInputs');
+    const mtnInputs = document.getElementById('mtnInputs');
+
+    if (option === 'airtel') {
+        airtelInputs.style.display = 'block';
+        mtnInputs.style.display = 'none';
+        mtnOption.classList.remove('active');
+        airtelOption.classList.toggle('active');
+    } else if (option === 'mtn') {
+        mtnInputs.style.display = 'block';
+        airtelInputs.style.display = 'none';
+        airtelOption.classList.remove('active');
+        mtnOption.classList.toggle('active');
+    }
+}
+
+</script>
+
+<script type="module" src="checkout.js">
+
+
+
+</script>
